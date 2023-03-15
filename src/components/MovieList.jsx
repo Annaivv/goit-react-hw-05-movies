@@ -1,15 +1,9 @@
-import { getTrending } from 'services/api';
-
-export const MovieList = () => {
-  getTrending();
-
+export const MovieList = ({ items }) => {
   return (
     <ul>
-      {/* {items.map(item => (
-        <li key={item.id}>
-          <span></span>
-        </li>
-      ))} */}
+      {items.map(item => (
+        <li key={item.id}>{item.title ?? item.name}</li>
+      ))}
     </ul>
   );
 };
