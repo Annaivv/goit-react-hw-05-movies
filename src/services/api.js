@@ -8,7 +8,7 @@ export const getTrending = async () => {
     const response = await axios.get(
       `${BASIC_API}/trending/all/day?api_key=${API_KEY}`
     );
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
   }
