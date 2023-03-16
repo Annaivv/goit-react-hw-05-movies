@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
-import Cast from './Cast';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -24,7 +24,7 @@ const MovieDetails = () => {
     return <p>Loading...</p>;
   }
   const genres = movie?.genres;
-  console.log(genres);
+  //   console.log(genres);
 
   return (
     <div>
@@ -46,6 +46,18 @@ const MovieDetails = () => {
             'No genres'
           )}
         </div>
+      </section>
+      <section>
+        <h2>Additional information</h2>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+        <Outlet />
       </section>
     </div>
   );
