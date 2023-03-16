@@ -10,3 +10,11 @@ export const fetchMoviesList = () => {
 export const fetchMovieById = id => {
   return axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
 };
+
+export const fetchMovieCastById = id => {
+  return axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+};
+
+export const fetchMovieReviewsById = id => {
+  return axios.get(`${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`);
+};

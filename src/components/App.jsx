@@ -25,15 +25,17 @@ export const App = () => {
     <div>
       <Layout>
         <nav>
-          <StyledLink to="/" end>
+          <StyledLink to={PAGE_NAMES.homepage} end>
             Home
           </StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
+          <StyledLink to={PAGE_NAMES.movies}>Movies</StyledLink>
         </nav>
 
         <Routes>
           <Route path={PAGE_NAMES.homepage} element={<Home />} />
-          <Route path={PAGE_NAMES.movies} element={<Movies />} />
+          <Route path={PAGE_NAMES.movies} element={<Movies />}>
+            {/* <Route path=''/> */}
+          </Route>
           <Route path={PAGE_NAMES.movie} element={<MovieDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
