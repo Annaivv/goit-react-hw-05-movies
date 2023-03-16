@@ -1,7 +1,10 @@
-export const MovieDetails = () => {
+const MovieDetails = () => {
   return (
     <div>
-      <p>Film info</p>
+      <h3>Film info</h3>
+      <p>Film details</p>
     </div>
   );
 };
+
+export default MovieDetails;
