@@ -6,10 +6,12 @@ import { fetchMovieById } from 'services/api';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
+    setStatus('loading');
     fetchMovieById(movieId)
       .then(({ data }) => {
         // console.log(data);
@@ -20,21 +22,27 @@ const MovieDetails = () => {
       });
   }, [movieId]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  if (status === 'idle' || isLoading) {
+    return <>Loading...</>;
   }
-  const genres = movie?.genres;
+
+  if (status === 'error') {
+    return <>An error occured</>;
+  }
+
+  const genres = movie.genres;
   //   console.log(genres);
 
   return (
     <div>
+      <button>Go back</button>
       <section>
         <div>{/* <img src={movie?.backdrop_path} alt="movie poster" /> */}</div>
         <div>
-          <h2>{movie?.title ?? movie?.name}</h2>
-          <p>User score: {Math.round(movie?.vote_average * 10)}%</p>
+          <h2>{movie.title ?? movie.name}</h2>
+          <p>User score: {Math.round(movie.vote_average * 10)}%</p>
           <h3>Overview</h3>
-          <p>{movie?.overview}</p>
+          <p>{movie.overview}</p>
           <h4>Genres</h4>
           {genres ? (
             <ul>

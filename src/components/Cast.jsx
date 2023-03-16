@@ -19,13 +19,13 @@ const Cast = () => {
       });
   }, [movieId]);
 
-  if (isLoading) {
+  if (!cast && isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <div>
-      {cast ? (
+      {cast && cast.length > 0 ? (
         <ul>
           {cast.map(castItem => (
             <li key={castItem.id}>

@@ -19,13 +19,13 @@ const Reviews = () => {
       });
   }, [movieId]);
 
-  if (isLoading) {
+  if (!reviews && isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <div>
-      {reviews ? (
+      {reviews && reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
@@ -35,7 +35,7 @@ const Reviews = () => {
           ))}
         </ul>
       ) : (
-        'No reviews'
+        'We don’t have any reviews for this movie'
       )}
     </div>
   );

@@ -5,7 +5,6 @@ import MovieDetails from 'components/MovieDetails';
 const Movies = () => {
   return (
     <>
-      <button>Go back</button>
       <MovieDetails />
     </>
   );
