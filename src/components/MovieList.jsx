@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
+import { PAGE_NAMES } from 'router/paths';
 
 export const MovieList = ({ items }) => {
   return (
@@ -7,7 +8,7 @@ export const MovieList = ({ items }) => {
         <li key={item.id}>
           <Link
             style={{ margin: '10px 0', display: 'block' }}
-            to={`/movies/${item.id}`}
+            to={generatePath(PAGE_NAMES.movie, { movieId: item.id })}
           >
             {item.title ?? item.name}
           </Link>
