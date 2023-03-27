@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
+import { BackButton } from './BackButton/BackButton';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBackButtonClick = () => {
+    navigate('/');
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,40 +40,44 @@ const MovieDetails = () => {
   //   console.log(genres);
 
   return (
-    <div>
-      <button>Go back</button>
-      <section>
-        <div>{/* <img src={movie?.backdrop_path} alt="movie poster" /> */}</div>
-        <div>
-          <h2>{movie.title ?? movie.name}</h2>
-          <p>User score: {Math.round(movie.vote_average * 10)}%</p>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h4>Genres</h4>
-          {genres ? (
-            <ul>
-              {genres.map(genre => (
-                <li key={genre.id}>{genre.name}</li>
-              ))}
-            </ul>
-          ) : (
-            'No genres'
-          )}
-        </div>
-      </section>
-      <section>
-        <h2>Additional information</h2>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
-        <Outlet />
-      </section>
-    </div>
+    <>
+      <div>
+        <section>
+          <BackButton onClick={handleBackButtonClick}>Back</BackButton>
+          <div>
+            <img src="" alt="movie poster" />
+          </div>
+          <div>
+            <h2>{movie.title ?? movie.name}</h2>
+            <p>User score: {Math.round(movie.vote_average * 10)}%</p>
+            <h3>Overview</h3>
+            <p>{movie.overview}</p>
+            <h4>Genres</h4>
+            {genres ? (
+              <ul>
+                {genres.map(genre => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>
+            ) : (
+              'No genres'
+            )}
+          </div>
+        </section>
+        <section>
+          <h2>Additional information</h2>
+          <ul>
+            <li>
+              <Link to="cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="reviews">Reviews</Link>
+            </li>
+          </ul>
+          <Outlet />
+        </section>
+      </div>
+    </>
   );
 };
 

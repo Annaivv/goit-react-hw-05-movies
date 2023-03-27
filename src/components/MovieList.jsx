@@ -1,7 +1,8 @@
-import { Link, generatePath } from 'react-router-dom';
+import { Link, generatePath, useLocation } from 'react-router-dom';
 import { PAGE_NAMES } from 'router/paths';
 
 export const MovieList = ({ items }) => {
+  const location = useLocation();
   return (
     <ul>
       {items.map(item => (
@@ -9,6 +10,7 @@ export const MovieList = ({ items }) => {
           <Link
             style={{ margin: '10px 0', display: 'block' }}
             to={generatePath(PAGE_NAMES.movie, { movieId: item.id })}
+            state={{ prevPage: location.pathname }}
           >
             {item.title ?? item.name}
           </Link>

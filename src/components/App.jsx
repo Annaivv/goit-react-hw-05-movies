@@ -1,49 +1,32 @@
-import styled from 'styled-components';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from './GlobalStyle';
-import { Layout } from './Layout';
+import { Container } from './Layout/Layout';
 
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import NotFound from 'pages/NotFound';
 import MovieDetails from './MovieDetails';
-import { PAGE_NAMES } from 'router/paths';
+// import { PAGE_NAMES } from 'router/paths';
 import Cast from './Cast';
 import Reviews from './Reviews';
-
-const StyledLink = styled(NavLink)`
-  color: black;
-  text-decoration: none;
-  margin-right: 10px;
-
-  &.active {
-    color: red;
-  }
-`;
+import { SharedLayout } from './Layout/SharedLayout';
 
 export const App = () => {
   return (
-    <div>
-      <Layout>
-        <nav>
-          <StyledLink to={PAGE_NAMES.homepage} end>
-            Home
-          </StyledLink>
-          <StyledLink to={PAGE_NAMES.movies}>Movies</StyledLink>
-        </nav>
-
-        <Routes>
-          <Route path={PAGE_NAMES.homepage} element={<Home />} />
-          <Route path={PAGE_NAMES.movies} element={<Movies />} />
-          <Route path={PAGE_NAMES.movie} element={<MovieDetails />}>
+    <Container>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
           <Route path="*" element={<NotFound />} />
-        </Routes>
-        <GlobalStyle />
-      </Layout>
-    </div>
+        </Route>
+      </Routes>
+      <GlobalStyle />
+    </Container>
   );
 };
