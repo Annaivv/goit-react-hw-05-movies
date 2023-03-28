@@ -18,3 +18,9 @@ export const fetchMovieCastById = id => {
 export const fetchMovieReviewsById = id => {
   return axios.get(`${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`);
 };
+
+export const fetchMovieByQuery = query => {
+  return axios.get(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+  );
+};

@@ -10,6 +10,7 @@ const Home = () => {
       setMovies(data.results);
     });
   }, []);
+
   return (
     <>
       <h1>Trending today</h1>

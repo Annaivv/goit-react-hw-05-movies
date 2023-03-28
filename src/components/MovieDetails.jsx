@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 import { BackLink } from './BackButton/BackLink';
@@ -17,7 +17,6 @@ const MovieDetails = () => {
     setStatus('loading');
     fetchMovieById(movieId)
       .then(({ data }) => {
-        // console.log(data);
         setMovie(data);
       })
       .finally(() => {
@@ -34,7 +33,6 @@ const MovieDetails = () => {
   }
 
   const genres = movie.genres;
-  //   console.log(genres);
 
   return (
     <>
@@ -42,7 +40,7 @@ const MovieDetails = () => {
         <BackLink to={backLinkHref}>Back</BackLink>
         <section>
           <div>
-            <img src="" alt="movie poster" />
+            <img src={movie.poster_path} alt="movie poster" />
           </div>
           <div>
             <h2>{movie.title ?? movie.name}</h2>
