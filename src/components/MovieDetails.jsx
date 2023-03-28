@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
-import { BackButton } from './BackButton/BackButton';
+import { BackLink } from './BackButton/BackLink';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const handleBackButtonClick = () => {
-    navigate('/');
-  };
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,8 +39,8 @@ const MovieDetails = () => {
   return (
     <>
       <div>
+        <BackLink to={backLinkHref}>Back</BackLink>
         <section>
-          <BackButton onClick={handleBackButtonClick}>Back</BackButton>
           <div>
             <img src="" alt="movie poster" />
           </div>
@@ -74,8 +71,8 @@ const MovieDetails = () => {
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
-          <Outlet />
         </section>
+        <Outlet />
       </div>
     </>
   );

@@ -14,12 +14,12 @@ const StyledLink = styled(NavLink)`
 export const SharedLayout = () => {
   return (
     <div>
-      <nav>
-        <StyledLink to="/" end>
-          Home
-        </StyledLink>
-        <StyledLink to="/movies">Movies</StyledLink>
-      </nav>
+      <header>
+        <nav>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
+        </nav>
+      </header>
       <main>
         <Outlet />
       </main>
