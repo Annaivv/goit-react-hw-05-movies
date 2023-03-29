@@ -16,7 +16,9 @@ const MovieDetails = () => {
   const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const fallBackImg =
+    'https://www.google.com/imgres?imgurl=https%3A%2F%2Fget.pxhere.com%2Fphoto%2Ffilm-photographic-film-recreation-black-and-white-rim-wheel-clip-art-1566355.jpg&tbnid=2Uj-It6UStWyKM&vet=12ahUKEwir4a_WwoH-AhXPxyoKHdF2D1MQMygLegUIARDaAQ..i&imgrefurl=https%3A%2F%2Fpxhere.com%2Fpl%2Fphoto%2F1566355&docid=7KyCuVFws3eNEM&w=5220&h=2910&q=film&ved=2ahUKEwir4a_WwoH-AhXPxyoKHdF2D1MQMygLegUIARDaAQ';
+  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     setIsLoading(true);
@@ -47,7 +49,10 @@ const MovieDetails = () => {
         <MovieInfo>
           <MoviePoster>
             <img
-              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              src={
+                `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` ||
+                fallBackImg
+              }
               alt="movie poster"
             />
           </MoviePoster>

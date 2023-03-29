@@ -12,12 +12,6 @@ const NotFound = lazy(() => import('pages/NotFound'));
 const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
-// import Home from 'pages/Home';
-// import Movies from 'pages/Movies';
-// import NotFound from 'pages/NotFound';
-// import MovieDetails from './MovieDetails/MovieDetails';
-// import Cast from './Cast';
-// import Reviews from './Reviews';
 
 export const App = () => {
   return (

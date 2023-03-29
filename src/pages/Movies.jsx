@@ -20,7 +20,7 @@ const Movies = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
-    console.log(form.elements[0].value);
+
     setSearchParams({ movieName: form.elements[0].value });
     form.reset();
   };
