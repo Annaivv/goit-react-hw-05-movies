@@ -40,7 +40,10 @@ const MovieDetails = () => {
         <BackLink to={backLinkHref}>Back</BackLink>
         <section>
           <div>
-            <img src={movie.poster_path} alt="movie poster" />
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt="movie poster"
+            />
           </div>
           <div>
             <h2>{movie.title ?? movie.name}</h2>

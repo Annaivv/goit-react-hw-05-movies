@@ -29,6 +29,10 @@ const Cast = () => {
         <ul>
           {cast.map(castItem => (
             <li key={castItem.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${castItem.profile_path}`}
+                alt=""
+              />
               <p>{castItem.name}</p>
               <p>Character: {castItem.character}</p>
             </li>
