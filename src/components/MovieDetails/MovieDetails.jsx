@@ -16,11 +16,9 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
+  const [backLink, setBackLink] = useState(null);
   const location = useLocation();
-
   const fallBackImg = 'https://placehold.co/400x200?text=No+poster+found';
-
-  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,6 +31,12 @@ const MovieDetails = () => {
         setIsLoading(false);
       });
   }, [movieId]);
+
+  useEffect(() => {
+    if (backLink) return;
+    const backLinkHref = location.state?.from ?? '/';
+    setBackLink(backLinkHref);
+  }, [backLink, location.state?.from]);
 
   if (status === 'idle' || isLoading) {
     return <>Loading...</>;
@@ -47,7 +51,7 @@ const MovieDetails = () => {
   return (
     <>
       <div>
-        <BackLink to={backLinkHref}>Back</BackLink>
+        <BackLink to={backLink}>Back</BackLink>
         <MovieInfo>
           <MoviePoster>
             {movie.backdrop_path ? (
