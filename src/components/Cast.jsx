@@ -12,7 +12,6 @@ const Cast = () => {
     fetchMovieCastById(movieId)
       .then(({ data }) => {
         setCast(data.cast);
-        //   console.log(data.cast);
       })
       .finally(() => {
         setIsLoading(false);
@@ -28,8 +27,9 @@ const Cast = () => {
       {cast && cast.length > 0 ? (
         <ul>
           {cast.map(castItem => (
-            <li key={castItem.id}>
+            <li key={castItem.id} style={{ padding: '12px 0' }}>
               <img
+                style={{ height: '200px', marginBottom: '8px' }}
                 src={`https://image.tmdb.org/t/p/w500${castItem.profile_path}`}
                 alt=""
               />
