@@ -25,3 +25,7 @@ export const MoreInfo = styled.section`
   padding: 18px 0;
   border-bottom: 2px solid #aeaeae;
 `;
+
+export const InfoItem = styled.li`
+  padding-top: 12px;
+`;

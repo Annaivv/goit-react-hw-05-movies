@@ -12,7 +12,6 @@ const Reviews = () => {
     fetchMovieReviewsById(movieId)
       .then(({ data }) => {
         setReviews(data.results);
-        console.log(data.results);
       })
       .finally(() => {
         setIsLoading(false);

@@ -8,6 +8,7 @@ import {
   MoviePoster,
   MovieData,
   MoreInfo,
+  InfoItem,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -16,8 +17,9 @@ const MovieDetails = () => {
   const [status, setStatus] = useState('idle');
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const fallBackImg =
-    'https://www.google.com/imgres?imgurl=https%3A%2F%2Fget.pxhere.com%2Fphoto%2Ffilm-photographic-film-recreation-black-and-white-rim-wheel-clip-art-1566355.jpg&tbnid=2Uj-It6UStWyKM&vet=12ahUKEwir4a_WwoH-AhXPxyoKHdF2D1MQMygLegUIARDaAQ..i&imgrefurl=https%3A%2F%2Fpxhere.com%2Fpl%2Fphoto%2F1566355&docid=7KyCuVFws3eNEM&w=5220&h=2910&q=film&ved=2ahUKEwir4a_WwoH-AhXPxyoKHdF2D1MQMygLegUIARDaAQ';
+
+  const fallBackImg = 'https://placehold.co/400x200?text=No+poster+found';
+
   const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
@@ -48,13 +50,14 @@ const MovieDetails = () => {
         <BackLink to={backLinkHref}>Back</BackLink>
         <MovieInfo>
           <MoviePoster>
-            <img
-              src={
-                `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` ||
-                fallBackImg
-              }
-              alt="movie poster"
-            />
+            {movie.backdrop_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                alt={movie.title ?? movie.name}
+              />
+            ) : (
+              <img src={fallBackImg} alt="no movie found" />
+            )}
           </MoviePoster>
           <MovieData>
             <h2>{movie.title ?? movie.name}</h2>
@@ -76,12 +79,12 @@ const MovieDetails = () => {
         <MoreInfo>
           <h2>Additional information</h2>
           <ul>
-            <li>
+            <InfoItem>
               <Link to="cast">Cast</Link>
-            </li>
-            <li>
+            </InfoItem>
+            <InfoItem>
               <Link to="reviews">Reviews</Link>
-            </li>
+            </InfoItem>
           </ul>
         </MoreInfo>
         <Suspense fallback={<div>Loading subpage...</div>}>

@@ -25,8 +25,6 @@ const Movies = () => {
     form.reset();
   };
 
-  console.log(movies);
-
   const updateQueryString = query => {
     const nextParams = query !== '' ? { query } : {};
     setSearchParams(nextParams);
