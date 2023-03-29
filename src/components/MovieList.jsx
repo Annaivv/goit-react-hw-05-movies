@@ -3,7 +3,6 @@ import { PAGE_NAMES } from 'router/paths';
 
 export const MovieList = ({ items }) => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <ul>
