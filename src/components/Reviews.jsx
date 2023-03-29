@@ -28,8 +28,8 @@ const Reviews = () => {
       {reviews && reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
-            <li key={review.id}>
-              <h5>Author: {review.author}</h5>
+            <li key={review.id} style={{ padding: '12px 0' }}>
+              <h5 style={{ marginBottom: '8px' }}>Author: {review.author}</h5>
               <p>{review.content}</p>
             </li>
           ))}
