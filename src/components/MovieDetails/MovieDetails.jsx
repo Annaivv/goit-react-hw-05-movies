@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
-import { BackLink } from './BackButton/BackLink';
+import { BackLink } from '../BackButton/BackLink';
+import {
+  MovieInfo,
+  MoviePoster,
+  MovieData,
+  MoreInfo,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -38,14 +44,14 @@ const MovieDetails = () => {
     <>
       <div>
         <BackLink to={backLinkHref}>Back</BackLink>
-        <section>
-          <div>
+        <MovieInfo>
+          <MoviePoster>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt="movie poster"
             />
-          </div>
-          <div>
+          </MoviePoster>
+          <MovieData>
             <h2>{movie.title ?? movie.name}</h2>
             <p>User score: {Math.round(movie.vote_average * 10)}%</p>
             <h3>Overview</h3>
@@ -60,9 +66,9 @@ const MovieDetails = () => {
             ) : (
               'No genres'
             )}
-          </div>
-        </section>
-        <section>
+          </MovieData>
+        </MovieInfo>
+        <MoreInfo>
           <h2>Additional information</h2>
           <ul>
             <li>
@@ -72,7 +78,7 @@ const MovieDetails = () => {
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
-        </section>
+        </MoreInfo>
         <Outlet />
       </div>
     </>

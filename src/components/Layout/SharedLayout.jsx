@@ -1,25 +1,15 @@
-import styled from 'styled-components';
-import { NavLink, Outlet } from 'react-router-dom';
-
-const StyledLink = styled(NavLink)`
-  color: black;
-  text-decoration: none;
-  margin-right: 10px;
-
-  &.active {
-    color: red;
-  }
-`;
+import { Outlet } from 'react-router-dom';
+import { StyledLink, Header } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
     <div>
-      <header>
+      <Header>
         <nav>
           <StyledLink to="/">Home</StyledLink>
           <StyledLink to="/movies">Movies</StyledLink>
         </nav>
-      </header>
+      </Header>
       <main>
         <Outlet />
       </main>

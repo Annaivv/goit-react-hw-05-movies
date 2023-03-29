@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from './GlobalStyle';
-import { Container } from './Layout/Layout';
+import { Container } from './Layout/SharedLayout.styled';
 
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import NotFound from 'pages/NotFound';
-import MovieDetails from './MovieDetails';
+import MovieDetails from './MovieDetails/MovieDetails';
 import { PAGE_NAMES } from 'router/paths';
 import Cast from './Cast';
 import Reviews from './Reviews';

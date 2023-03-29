@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h1 style={{ padding: '18px 0' }}>Trending today</h1>
 
       <MovieList items={movies}></MovieList>
     </>
